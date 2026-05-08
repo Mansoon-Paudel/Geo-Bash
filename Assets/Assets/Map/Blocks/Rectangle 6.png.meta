@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: cdf0292ba6d774d4ba5672f28bed0f05
+guid: 4a83075470e88429d8c37eeecd4a8415
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6659620713603460174
-    second: Map-Photoroom (1)_0
-  - first:
-      213: 6933700876987233996
-    second: Map-Photoroom (1)_1
+      213: -9147649766486412442
+    second: Rectangle 6_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,67 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Map-Photoroom (1)_0
+      name: Rectangle 6_0
       rect:
         serializedVersion: 2
-        x: 308
-        y: 384
-        width: 135
-        height: 136
+        x: 0
+        y: 0
+        width: 32
+        height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2b315d2ce364493a0800000000000000
-      internalID: -6659620713603460174
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Map-Photoroom (1)_1
-      rect:
-        serializedVersion: 2
-        x: 662
-        y: 436
-        width: 40
-        height: 110
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cc673a71634793060800000000000000
-      internalID: 6933700876987233996
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Map_0
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 198
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e830d7177486487e85aa0fc0b9b7f80
-      internalID: 286098367
+      spriteID: 66374e2f0050d0180800000000000000
+      internalID: -9147649766486412442
       vertices: []
       indices: 
       edges: []
@@ -185,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0b329cffc81d74658a5e51c6fec2fbfd
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -195,9 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Map-Photoroom (1)_0: -6659620713603460174
-      Map-Photoroom (1)_1: 6933700876987233996
-      Map_0: 286098367
+      Rectangle 6_0: -9147649766486412442
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -13,6 +13,6 @@ public class Movement : MonoBehaviour
 
   private void FixedUpdate()
   {
-    _rb.linearVelocityX = _speed;
+    _rb.linearVelocity = new Vector2(_speed, _rb.linearVelocity.y);
   }
 }

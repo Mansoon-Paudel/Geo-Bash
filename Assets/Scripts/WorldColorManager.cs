@@ -1,41 +1,39 @@
 using UnityEngine;
 
-public class WorldColorManager : MonoBehaviour
+public class BackgroundColor : MonoBehaviour
 {
-    public static WorldColorManager Instance;
-
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] private SpriteRenderer groundRenderer;
-    [SerializeField] private float transitionSpeed = 2f;
-
-    private Color _targetBackground;
-    private Color _targetGround;
-
-    void Awake()
+    [SerializeField] private Color[] colors = new Color[]
     {
-        Instance = this;
-        _targetBackground = mainCamera.backgroundColor;
-        _targetGround = groundRenderer.color;
-    }
+        Color.rebeccaPurple,
+        Color.darkSlateGray,
+        Color.red,
+        Color.darkRed,
+        Color.gray1,
+        Color.white
+    };
 
+    [SerializeField] private float transitionSpeed = 1f;
+    private SpriteRenderer _sr;
+    private int _currentIndex = 0;
+    void Start()
+    {
+        _sr = GetComponent<SpriteRenderer>();
+        _sr.color = colors[0];
+    }
     void Update()
     {
-        mainCamera.backgroundColor = Color.Lerp(
-            mainCamera.backgroundColor,
-            _targetBackground,
-            transitionSpeed * Time.deltaTime
-        );
-
-        groundRenderer.color = Color.Lerp(
-            groundRenderer.color,
-            _targetGround,
+        _sr.color = Color.Lerp(
+            _sr.color,
+            colors[_currentIndex],
             transitionSpeed * Time.deltaTime
         );
     }
-
-    public void SetColors(Color background, Color ground)
+    public void NextColor()
     {
-        _targetBackground = background;
-        _targetGround = ground;
+        _currentIndex = (_currentIndex + 1) % colors.Length;
+    }
+    public void SetColor(int index)
+    {
+        _currentIndex = Mathf.Clamp(index, 0, colors.Length - 1);
     }
 }

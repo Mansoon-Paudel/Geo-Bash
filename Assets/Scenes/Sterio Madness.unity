@@ -164,8 +164,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bg
-  mainCamera: {fileID: 519420031}
-  groundRenderer: {fileID: 1534017765}
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
   transitionSpeed: 2
 --- !u!212 &36184639
 SpriteRenderer:
@@ -720,8 +723,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bg
-  mainCamera: {fileID: 519420031}
-  groundRenderer: {fileID: 1534017765}
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
   transitionSpeed: 2
 --- !u!212 &345047271
 SpriteRenderer:
@@ -827,8 +833,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bg
-  mainCamera: {fileID: 519420031}
-  groundRenderer: {fileID: 1534017765}
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
   transitionSpeed: 2
 --- !u!212 &352798626
 SpriteRenderer:
@@ -970,8 +979,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bg
-  mainCamera: {fileID: 519420031}
-  groundRenderer: {fileID: 1534017765}
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
   transitionSpeed: 2
 --- !u!212 &412704126
 SpriteRenderer:
@@ -1257,6 +1269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 596524176}
   - component: {fileID: 596524177}
+  - component: {fileID: 596524178}
   m_Layer: 10
   m_Name: Ground 1_0 (2)
   m_TagString: Ground
@@ -1338,6 +1351,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &596524178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596524175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundColor
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
+  transitionSpeed: 1
 --- !u!1 &657815447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,8 +1414,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bg
-  mainCamera: {fileID: 519420031}
-  groundRenderer: {fileID: 1534017765}
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
   transitionSpeed: 2
 --- !u!212 &657815450
 SpriteRenderer:
@@ -1522,8 +1556,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bg
-  mainCamera: {fileID: 519420031}
-  groundRenderer: {fileID: 1534017765}
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
   transitionSpeed: 2
 --- !u!212 &762543479
 SpriteRenderer:
@@ -1698,7 +1735,6 @@ GameObject:
   - component: {fileID: 1007890925}
   - component: {fileID: 1007890926}
   - component: {fileID: 1007890928}
-  - component: {fileID: 1007890929}
   - component: {fileID: 1007890930}
   m_Layer: 10
   m_Name: Map
@@ -1761,7 +1797,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: fee58acf433844a53ad712a044b36e24, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1797,21 +1833,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1081.004, y: 8.511932}
   m_EdgeRadius: 0
---- !u!114 &1007890929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007890924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BGColorManager
-  mainCamera: {fileID: 0}
-  groundRenderer: {fileID: 0}
-  transitionSpeed: 2
 --- !u!114 &1007890930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1836,6 +1857,7 @@ GameObject:
   - component: {fileID: 1103398189}
   - component: {fileID: 1103398190}
   - component: {fileID: 1103398191}
+  - component: {fileID: 1103398192}
   m_Layer: 0
   m_Name: BackGround
   m_TagString: Untagged
@@ -1907,6 +1929,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1103398192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103398188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundColor
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
+  transitionSpeed: 1
 --- !u!1 &1335952164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,6 +2095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1484162566}
   - component: {fileID: 1484162567}
+  - component: {fileID: 1484162568}
   m_Layer: 10
   m_Name: Ground 1_0 (3)
   m_TagString: Ground
@@ -2136,6 +2177,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1484162568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484162565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundColor
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
+  transitionSpeed: 1
 --- !u!1 &1534017763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,6 +2205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534017764}
   - component: {fileID: 1534017765}
+  - component: {fileID: 1534017766}
   m_Layer: 10
   m_Name: Ground 1_0
   m_TagString: Ground
@@ -2227,6 +2287,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1534017766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534017763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundColor
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
+  transitionSpeed: 1
 --- !u!1 &1605323685
 GameObject:
   m_ObjectHideFlags: 0
@@ -2315,7 +2393,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1143692212453745536, guid: f9e7f337b76ac43d69c22446a438205c, type: 3}
+  m_Sprite: {fileID: -4426933547838425834, guid: 0b1b6cbdf234a4b98bb00e33f1ab2004, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2343,6 +2421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1861380882}
   - component: {fileID: 1861380883}
+  - component: {fileID: 1861380884}
   m_Layer: 10
   m_Name: Ground 1_0 (1)
   m_TagString: Ground
@@ -2424,6 +2503,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1861380884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861380881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundColor
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
+  transitionSpeed: 1
 --- !u!1 &1905554544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2548,8 +2645,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bg
-  mainCamera: {fileID: 519420031}
-  groundRenderer: {fileID: 1534017765}
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
   transitionSpeed: 2
 --- !u!212 &1958630807
 SpriteRenderer:
@@ -2828,8 +2928,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9907446181b24f1c932fa92162e314d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bg
-  mainCamera: {fileID: 519420031}
-  groundRenderer: {fileID: 1534017765}
+  colors:
+  - {r: 0.09, g: 0.09, b: 0.27, a: 1}
+  - {r: 0.1, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.27, g: 0.05, b: 0.05, a: 1}
+  - {r: 0.05, g: 0.15, b: 0.27, a: 1}
   transitionSpeed: 2
 --- !u!212 &2014966115
 SpriteRenderer:
@@ -7960,7 +8063,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: fee58acf433844a53ad712a044b36e24, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -8038,10 +8141,7 @@ MonoBehaviour:
   speed: 0
   jumpForce: 25
   gravityScale: 3
-  rotationSpeed: 180
-  coyoteTime: 0.1
-  jumpCutMultiplier: 0.85
-  groundNormalThreshold: 0.5
+  rotationSpeed: 200
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

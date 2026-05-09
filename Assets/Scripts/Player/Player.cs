@@ -20,13 +20,16 @@ public class PlayerController : MonoBehaviour
 
     [Header("Death Settings")]
     [SerializeField] private float xVelocityDeathThreshold = -0.52f;
+    [SerializeField] private float restartDelay = 2.5f;
 
     [Header("Particles")]
     [SerializeField] private ParticleSystem groundParticles;
+    [SerializeField] private ParticleSystem deathParticles;
 
     private Rigidbody2D rb;
     private Collider2D col;
-    private ParticleSystem.EmissionModule particleEmission;   
+    private SpriteRenderer sr;
+    private ParticleSystem.EmissionModule particleEmission;
 
     private float targetRotation = 0f;
     private bool isGrounded = false;
@@ -44,15 +47,23 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
         rb.freezeRotation = true;
 
         if (groundParticles != null)
-        { 
+        {
             var main = groundParticles.main;
             main.simulationSpace = ParticleSystemSimulationSpace.World;
             particleEmission = groundParticles.emission;
         }
-        
+
+        if (deathParticles != null)
+        {
+            var main = deathParticles.main;
+            main.useUnscaledTime = true;
+            deathParticles.Simulate(0f, true, true);
+            deathParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
     }
 
     private void Update()
@@ -68,7 +79,7 @@ public class PlayerController : MonoBehaviour
         HandleJumpInput();
         HandleFallRotation();
         ApplySmoothRotation();
-        UpdateParticles();             
+        UpdateParticles();
     }
 
     private void UpdateParticles()
@@ -83,7 +94,7 @@ public class PlayerController : MonoBehaviour
         bool isOnAnything = isGrounded || isOnBlock;
         particleEmission.enabled = isOnAnything;
     }
-   
+
     private void FixedUpdate()
     {
         if (isDead) return;
@@ -109,7 +120,22 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
-        Time.timeScale = 0f;
+
+        if (sr != null) sr.enabled = false;
+
+        if (groundParticles != null)
+            particleEmission.enabled = false;
+
+        if (deathParticles != null)
+        {
+            deathParticles.transform.position = transform.position;
+            deathParticles.Play();
+        }
+   Time.timeScale = 0f;
+
+        GameObject runner = new GameObject("RestartRunner");
+        DontDestroyOnLoad(runner);
+        runner.AddComponent<RestartRunner>().Init(restartDelay);
         Destroy(gameObject);
     }
 

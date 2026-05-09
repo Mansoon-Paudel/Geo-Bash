@@ -1,126 +1,211 @@
 using UnityEngine;
-using System.Collections;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 0f;
-    [SerializeField] private float jumpForce = 25f;
-    [SerializeField] private float gravityScale = 3f;
-    [SerializeField] private float rotationSpeed = 180f;
+    [Header("Jump Settings")]
+    [SerializeField] private float jumpForce = 15f;
 
-    private Rigidbody2D _rb;
-    private Movement[] _movements;
+    [Header("Ground Detection")]
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask blockLayer;
+    [SerializeField] private float groundCheckDistance = 0.05f;
 
-    private bool _isGrounded;
-    private bool _isDead;
-    private bool _shouldJump;
-    private float _currentAngle;
-    private bool _isSnapping;
-    void Start()
+    [Header("Rotation Settings")]
+    [SerializeField] private float rotationSpeed = 10f;
+
+    [Header("Feel Settings")]
+    [SerializeField] private float coyoteTime = 0.12f;
+    [SerializeField] private float jumpBufferTime = 0.15f;
+    [SerializeField] private float jumpCooldown = 0.15f;
+
+    [Header("Death Settings")]
+    [SerializeField] private float xVelocityDeathThreshold = -0.52f;
+
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem groundParticles;
+
+    private Rigidbody2D rb;
+    private Collider2D col;
+    private ParticleSystem.EmissionModule particleEmission;   
+
+    private float targetRotation = 0f;
+    private bool isGrounded = false;
+    private bool isOnBlock = false;
+    private bool wasGrounded = false;
+    private bool wasOnBlock = false;
+    private bool jumpedThisFrame = false;
+    private bool isDead = false;
+
+    private float coyoteTimer = 0f;
+    private float jumpBufferTimer = 0f;
+    private float lastJumpTime = -999f;
+
+    private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _rb.gravityScale = gravityScale;
-        _rb.freezeRotation = true;
-        _movements = FindObjectsOfType<Movement>();
-    }
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
+        rb.freezeRotation = true;
 
-    void Update()
-    {
-        if (_isDead) return;
-
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && _isGrounded)
-            _shouldJump = true;
-
-        if (!_isGrounded)
+        if (groundParticles != null)
         { 
-            _currentAngle -= rotationSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(0f, 0f, _currentAngle);
+            var main = groundParticles.main;
+            main.simulationSpace = ParticleSystemSimulationSpace.World;
+            particleEmission = groundParticles.emission;
         }
+        
     }
 
-    void FixedUpdate()
+    private void Update()
     {
-        if (_isDead) return;
+        if (isDead) return;
 
-        if (_shouldJump && _isGrounded)
-        {
-            _rb.linearVelocity = new Vector2(speed, jumpForce);
-            _shouldJump = false;
-        }
-        else
-        {
-            _rb.linearVelocity = new Vector2(speed, _rb.linearVelocity.y);
-        }
+        wasGrounded = isGrounded;
+        wasOnBlock = isOnBlock;
+        jumpedThisFrame = false;
+
+        CheckGrounded();
+        UpdateTimers();
+        HandleJumpInput();
+        HandleFallRotation();
+        ApplySmoothRotation();
+        UpdateParticles();             
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void UpdateParticles()
     {
-        if (!collision.gameObject.CompareTag("Ground")) return;
+        if (groundParticles == null) return;
 
-        foreach (ContactPoint2D contact in collision.contacts)
-        {
-            if (contact.normal.y > 0.5f)
-            {
-                _isGrounded = true;
-                if (!_isSnapping)
-                    StartCoroutine(SnapRotation());
+        Bounds b = col.bounds;
+        Vector3 offset = new Vector3(-b.extents.x, -b.extents.y, 0f);
+        groundParticles.transform.position = transform.position + offset;
+        groundParticles.transform.rotation = Quaternion.identity;
 
-                break;
-            }
-        }
+        bool isOnAnything = isGrounded || isOnBlock;
+        particleEmission.enabled = isOnAnything;
     }
-
-    private void OnCollisionExit2D(Collision2D collision)
+   
+    private void FixedUpdate()
     {
-        if (!collision.gameObject.CompareTag("Ground")) return;
-        _isGrounded = false;
-    }
+        if (isDead) return;
 
-    private IEnumerator SnapRotation()
-    {
-        _isSnapping = true;
-
-        float targetAngle = Mathf.Round(_currentAngle / 90f) * 90f;
-        float snapDuration = 0.08f; 
-        float elapsed = 0f;
-        float startAngle = _currentAngle;
-
-        while (elapsed < snapDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.SmoothStep(0f, 1f, elapsed / snapDuration);
-            _currentAngle = Mathf.Lerp(startAngle, targetAngle, t);
-            transform.rotation = Quaternion.Euler(0f, 0f, _currentAngle);
-            yield return null;
-        }
-        _currentAngle = targetAngle;
-        transform.rotation = Quaternion.Euler(0f, 0f, _currentAngle);
-
-        _isSnapping = false;
+        if (rb.linearVelocity.x < xVelocityDeathThreshold)
+            Die();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy")) Die();
+        if (other.CompareTag("Enemy"))
+            Die();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+            Die();
     }
 
     private void Die()
     {
-        if (_isDead) return;
-        _isDead = true;
+        if (isDead) return;
 
-        foreach (var movement in _movements)
-            if (movement != null) movement.enabled = false;
-
-        _rb.linearVelocity = Vector2.zero;
-        _rb.simulated = false;
-        StartCoroutine(DieRoutine());
-    }
-
-    private IEnumerator DieRoutine()
-    {
-        yield return new WaitForSecondsRealtime(0.1f);
+        isDead = true;
         Time.timeScale = 0f;
         Destroy(gameObject);
+    }
+
+    private void CheckGrounded()
+    {
+        Bounds b = col.bounds;
+        float castWidth = b.size.x * 0.8f;
+        Vector2 origin = new Vector2(b.center.x, b.min.y);
+        Vector2 size = new Vector2(castWidth, 0.02f);
+
+        RaycastHit2D groundHit = Physics2D.BoxCast(origin, size, 0f, Vector2.down, groundCheckDistance, groundLayer);
+        RaycastHit2D blockHit  = Physics2D.BoxCast(origin, size, 0f, Vector2.down, groundCheckDistance, blockLayer);
+
+        isGrounded = groundHit.collider != null;
+        isOnBlock  = blockHit.collider != null;
+
+        bool wasOnAnything = wasGrounded || wasOnBlock;
+        bool isOnAnything  = isGrounded  || isOnBlock;
+
+        if (!wasOnAnything && isOnAnything)
+        {
+            targetRotation = SnapToNearest90(targetRotation);
+            transform.rotation = Quaternion.Euler(0f, 0f, targetRotation);
+        }
+    }
+
+    private void UpdateTimers()
+    {
+        bool wasOnAnything = wasGrounded || wasOnBlock;
+        bool isOnAnything  = isGrounded  || isOnBlock;
+
+        if (wasOnAnything && !isOnAnything && !jumpedThisFrame)
+            coyoteTimer = coyoteTime;
+        else
+            coyoteTimer = Mathf.Max(0f, coyoteTimer - Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            jumpBufferTimer = jumpBufferTime;
+        else
+            jumpBufferTimer = Mathf.Max(0f, jumpBufferTimer - Time.deltaTime);
+    }
+
+    private void HandleJumpInput()
+    {
+        bool canJump    = isGrounded || isOnBlock || coyoteTimer > 0f;
+        bool shouldJump = jumpBufferTimer > 0f && Time.time - lastJumpTime > jumpCooldown;
+
+        if (canJump && shouldJump)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+            targetRotation -= 180f;
+            jumpedThisFrame = true;
+            lastJumpTime = Time.time;
+            coyoteTimer = 0f;
+            jumpBufferTimer = 0f;
+        }
+    }
+
+    private void HandleFallRotation()
+    {
+        bool justLeftBlock = wasOnBlock && !isOnBlock;
+
+        if (justLeftBlock && !jumpedThisFrame)
+            targetRotation -= 90f;
+    }
+
+    private void ApplySmoothRotation()
+    {
+        targetRotation = NormalizeAngle(targetRotation);
+        float current = NormalizeAngle(transform.eulerAngles.z);
+        float newAngle = Mathf.LerpAngle(current, targetRotation, Time.deltaTime * rotationSpeed);
+        transform.rotation = Quaternion.Euler(0f, 0f, newAngle);
+    }
+
+    private float NormalizeAngle(float angle)
+    {
+        while (angle > 180f)  angle -= 360f;
+        while (angle < -180f) angle += 360f;
+        return angle;
+    }
+
+    private float SnapToNearest90(float angle)
+    {
+        return Mathf.Round(angle / 90f) * 90f;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (col == null) return;
+        Bounds b = col.bounds;
+        Gizmos.color = (isGrounded || isOnBlock) ? Color.green : Color.red;
+        Gizmos.DrawWireCube(
+            new Vector3(b.center.x, b.min.y - groundCheckDistance, 0f),
+            new Vector3(b.size.x * 0.8f, 0.02f, 0f)
+        );
     }
 }

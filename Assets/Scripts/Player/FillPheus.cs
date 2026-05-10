@@ -15,13 +15,12 @@ namespace Player
         [SerializeField] private float restartDelay;
         private bool goingUp;
         private float targetRotation;
-        
+
         private void Awake()
         {
             sr = GetComponent<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
         }
-
         private void Update()
         {
             deathParticles.transform.position = transform.position;

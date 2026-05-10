@@ -14,6 +14,6 @@ public class ColorTrigger : MonoBehaviour
      foreach (var bg in FindObjectsOfType<BackgroundColor>())
         {
             bg.SetColor(colorIndex);
-        }
+        } 
     }
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f9e7f337b76ac43d69c22446a438205c
+guid: b42aa74dcc5d447a7b2d4735dc513619
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1143692212453745536
-    second: overlay 1_0
+      213: 6235888921751767633
+    second: flipheus_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: overlay 1_0
+      name: flipheus_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        x: 64
+        y: 46
+        width: 172
+        height: 137
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 083afa7f1063fdf00800000000000000
-      internalID: 1143692212453745536
+      spriteID: 15acec76fe35a8650800000000000000
+      internalID: 6235888921751767633
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      overlay 1_0: 1143692212453745536
+      flipheus_0: 6235888921751767633
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,0 +1,47 @@
+This file is the idea pad and where i store my idea and logic so i dont forget any key details
+
+Now, I have 2 characters, One is the block and another the cusor
+but the thing is that, I messed up with the Player logic in begining and made it constant in place while the world moves...
+
+
+It works, fine with the block but i need smth else for the trial of cursor to work
+
+How am gonna do this:
+we know that for once only one is going to be active,
+so i cana make it like that if, FillPheus is active
+then i will make it so my world, BG and our ground will move in different speed
+
+hoe i will do that...
+make 2 [serialized] speed on movement.cs
+which is attached with the world, BG and ground
+and then and make them move slowly and, i will make flipheus have velosity...
+
+sihit,.....
+I missed one detail, our background moves slowly and our ground+ object moves faster
+so i will make 2 speed, one for the background and one for the ground and objects will also not work
+as our camera will be following the player, so i will make the camera not follow the player and just move with the world,
+
+Plan 2:
+How do i even do it 😭
+I think i wont be able to complete this projet (Block, Our Borbpheus works but not our FillPheus)
+what if i try to make the player speed insanely low will it trigger the trail...?
+Doesnt workkkkk 😭😭
+
+I did the FliPheus movents but still have no idea on how i will do the flipheus trail,
+i think i will make it like that when the player is moving, it will spawn a trail object and then it will move with the player and then it will destroy itself after some time, but the thing is that,
+how am i gonna make it move with the player if the player is not moving ????
+
+waiitttt, i got a genius idea, i will make the trial child of ground but make a script 
+and make it so in Update(), Transform its position to player...
+
+me figthing with my brain
+Ground moves.. trial moves with it 
+
+trial is condtsntly updating itd podition to plsyer while the player still is constant from bsck it tp to plsyerd center
+i think it will create  conflict and bugs but lets try itt...
+
+i implemented it and now going to test it hopefully it works, if not then we will have to go find a new plan...
+nope same as before...
+lets just continue without the trial for now and figure smth out at the end...
+looks like i did smth wrong again, my player is just going through the wall even tho it has collision and both the collider are not tigger
+lets see how long it will take to fix this

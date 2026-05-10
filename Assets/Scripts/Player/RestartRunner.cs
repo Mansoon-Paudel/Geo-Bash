@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class RestartRunner : MonoBehaviour
 {
@@ -18,3 +20,4 @@ public class RestartRunner : MonoBehaviour
         Destroy(gameObject);
     }
 }
+

@@ -131,7 +131,8 @@ public class PlayerController : MonoBehaviour
             deathParticles.transform.position = transform.position;
             deathParticles.Play();
         }
-   Time.timeScale = 0f;
+        
+        Time.timeScale = 0f;
 
         GameObject runner = new GameObject("RestartRunner");
         DontDestroyOnLoad(runner);

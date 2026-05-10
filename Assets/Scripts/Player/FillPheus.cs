@@ -7,13 +7,15 @@ namespace Player
     {
         [SerializeField] private float speed;
         [SerializeField] private float up;
+        [SerializeField] private float rotationSpeed = 5f;
         private Rigidbody2D rb;
         private bool isDead;
         private SpriteRenderer sr;
         [SerializeField] private ParticleSystem deathParticles;
         [SerializeField] private float restartDelay;
         private bool goingUp;
-
+        private float targetRotation;
+        
         private void Awake()
         {
             sr = GetComponent<SpriteRenderer>();
@@ -22,10 +24,17 @@ namespace Player
 
         private void Update()
         {
-            GivingInput();
+            deathParticles.transform.position = transform.position;
+            GivingInput(); 
             DieTrigger();
         }
-
+        private void FixedUpdate()
+        {
+            if (!isDead)
+            {
+                rb.rotation = Mathf.Lerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+            }
+        }
         private void Die()
         {
             if (isDead) return;
@@ -38,7 +47,6 @@ namespace Player
                 deathParticles.transform.position = transform.position;
                 deathParticles.Play();
             }
-
             Time.timeScale = 0f;
 
             GameObject runner = new GameObject("RestartRunner");
@@ -47,12 +55,18 @@ namespace Player
             Destroy(gameObject);
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (other.CompareTag("Enemy"))
+            if (collision.CompareTag("Enemy"))
                 Die();
         }
-
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Block"))
+            {
+                Die();
+            }
+        }
         private void DieTrigger()
         {
             if (rb.linearVelocity.x < speed - 0.1)
@@ -74,20 +88,18 @@ namespace Player
                     Die();
                 }
             }
-
         }
-
         private void GivingInput()
         {
             if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
             {
-                rb.rotation = 45f;
+                targetRotation = 45f;
                 rb.linearVelocity = new Vector2(speed, up);
                 goingUp = true;
             }
             else
             {
-                rb.rotation = -45f;
+                targetRotation = -45f;
                 rb.linearVelocity = new Vector2(speed, -up);
                 goingUp = false;
             }

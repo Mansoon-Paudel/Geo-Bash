@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem groundParticles;
     [SerializeField] private ParticleSystem deathParticles;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip death;
     private Rigidbody2D rb;
     private Collider2D col;
     private SpriteRenderer sr;
@@ -120,7 +122,12 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
-
+        if (SoundManager.instance != null)
+            SoundManager.instance.PlaySound(death);
+        else
+            Debug.LogWarning("SoundManager instance is missing!");
+        
+        
         if (sr != null) sr.enabled = false;
 
         if (groundParticles != null)
@@ -190,6 +197,9 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
             targetRotation -= 180f;
+            
+            
+
             jumpedThisFrame = true;
             lastJumpTime = Time.time;
             coyoteTimer = 0f;

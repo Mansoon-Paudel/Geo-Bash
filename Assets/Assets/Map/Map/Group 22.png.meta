@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dcc9ef01298584977abbc0e51c7c6203
+guid: 05aac16d9001641ea84fa654498fb719
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 52384109212445689
-    second: BorbPheus-2_0
+      213: 8558659952710347508
+    second: Group 22_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BorbPheus-2_0
+      name: Group 22_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 68
-        height: 70
+        width: 1
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9fbab7dd11b1ab000800000000000000
-      internalID: 52384109212445689
+      spriteID: 4fa69aa91e776c670800000000000000
+      internalID: 8558659952710347508
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BorbPheus-2_0: 52384109212445689
+      Group 22_0: 8558659952710347508
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

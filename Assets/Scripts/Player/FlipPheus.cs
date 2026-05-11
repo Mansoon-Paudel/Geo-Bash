@@ -18,12 +18,12 @@ public class FlipPheus : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
     }
+
     void Update()
     {
         Flip();
         DieTrigger();
     }
-
     void Flip()
     {
         if (Input.GetKeyDown(KeyCode.Space) && Grounded)
@@ -35,9 +35,8 @@ public class FlipPheus : MonoBehaviour
                 transform.rotation = new Quaternion(
                     transform.rotation.x,
                     transform.rotation.y,
-                    -180,
-                    transform.rotation.w
-                );
+                    180,
+                    transform.rotation.w);
             }
             else
             {

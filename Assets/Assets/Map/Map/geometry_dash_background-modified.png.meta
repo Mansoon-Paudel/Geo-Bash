@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 87b66f20befb143699bfa1ac940eb480
+guid: c3aedb620564343dd8386ada4b2bd2f4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5855094130849387388
-    second: BorbPheus_0
+      213: -6555028076799808675
+    second: geometry_dash_background-modified_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BorbPheus_0
+      name: geometry_dash_background-modified_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 68
-        height: 68
+        width: 952
+        height: 704
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c7390c32719714150800000000000000
-      internalID: 5855094130849387388
+      spriteID: d5ba2a5b1bcd705a0800000000000000
+      internalID: -6555028076799808675
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BorbPheus_0: 5855094130849387388
+      geometry_dash_background-modified_0: -6555028076799808675
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -20,4 +20,3 @@ public class RestartRunner : MonoBehaviour
         Destroy(gameObject);
     }
 }
-

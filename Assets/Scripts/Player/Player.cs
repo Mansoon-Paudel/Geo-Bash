@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [Header("Particles")]
     [SerializeField] private ParticleSystem groundParticles;
     [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private float groundParticleGraceTime = 0.06f;
 
     [Header("SFX")]
     [SerializeField] private AudioClip death;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     private float coyoteTimer = 0f;
     private float jumpBufferTimer = 0f;
     private float lastJumpTime = -999f;
+    private float groundParticleTimer = 0f;
 
     private void Awake()
     {
@@ -51,12 +53,17 @@ public class PlayerController : MonoBehaviour
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
         rb.freezeRotation = true;
+        groundCheckDistance = Mathf.Max(Mathf.Abs(groundCheckDistance), 0.02f);
+
+        if (groundParticles == null)
+            groundParticles = GetComponent<ParticleSystem>();
 
         if (groundParticles != null)
         {
             var main = groundParticles.main;
             main.simulationSpace = ParticleSystemSimulationSpace.World;
             particleEmission = groundParticles.emission;
+            particleEmission.enabled = false;
         }
 
         if (deathParticles != null)
@@ -83,18 +90,27 @@ public class PlayerController : MonoBehaviour
         ApplySmoothRotation();
         UpdateParticles();
     }
-
     private void UpdateParticles()
     {
         if (groundParticles == null) return;
-
         Bounds b = col.bounds;
         Vector3 offset = new Vector3(-b.extents.x, -b.extents.y, 0f);
         groundParticles.transform.position = transform.position + offset;
         groundParticles.transform.rotation = Quaternion.identity;
 
         bool isOnAnything = isGrounded || isOnBlock;
-        particleEmission.enabled = isOnAnything;
+        if (jumpedThisFrame)
+            groundParticleTimer = 0f;
+        else if (isOnAnything)
+            groundParticleTimer = groundParticleGraceTime;
+        else
+            groundParticleTimer = Mathf.Max(0f, groundParticleTimer - Time.deltaTime);
+
+        bool shouldEmit = groundParticleTimer > 0f;
+        particleEmission.enabled = shouldEmit;
+
+        if (shouldEmit && !groundParticles.isPlaying)
+            groundParticles.Play();
     }
 
     private void FixedUpdate()
@@ -131,7 +147,10 @@ public class PlayerController : MonoBehaviour
         if (sr != null) sr.enabled = false;
 
         if (groundParticles != null)
+        {
             particleEmission.enabled = false;
+            groundParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
 
         if (deathParticles != null)
         {

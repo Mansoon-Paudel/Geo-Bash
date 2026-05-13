@@ -13,16 +13,10 @@ public class Portal : MonoBehaviour
         if (flyingPlayer == null)
             flyingPlayer = GameObject.Find("FlYPheus");
 
-        if (groundPlayer == null || flyingPlayer == null)
-            Debug.LogError("Portal: One or both player references are missing! Make sure names match or assign in Inspector.", this);
     }
-    
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other == null) return;
-        Debug.Log("Portal: Trigger hit by: " + other.gameObject.name, this);
-
         if (!other.CompareTag("Player"))
             return;
 

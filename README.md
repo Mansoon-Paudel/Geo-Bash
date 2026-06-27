@@ -18,10 +18,11 @@ A rework of Geometry Dash
 - Traps
 - Death Effects
 - SFX
+- Death Roll, has a small chance to trigger where the player doesnt die even after hitting any obstacle and starts rolling.
   
 Note:- Crazyy Skill required to complete
 
-[![Watch Gameplay](https://github.com/user-attachments/assets/95c64cdd-83ba-4bcb-90a0-d025e88e5525
-)](https://youtu.be/AhiU3vSErWI)
+[![Watch Gameplay](https://github.com/user-attachments/assets/ae9c9f79-793d-4cab-982d-3337b28e02f9
+)](https://youtu.be/JyHyt6pRhY4)
  
 

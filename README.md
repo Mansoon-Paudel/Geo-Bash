@@ -1,6 +1,6 @@
 #  Geo Bash
 
-A rework of Geometry Dash
+A copy of Geometry Dash
 
 **How it works:** GamePlay is Simple as the Geometry Dash Game, here you will just crash out alot that is one thing.
  
